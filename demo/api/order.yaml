@@ -1,0 +1,21 @@
+test:
+    name: 报单接口模板
+    variables:
+        expected_status_code: 200
+    request:
+        headers:
+            Content-Type: application/json;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                    (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
+        json:
+            buyDirection: true
+            contractId: zwh_HN1912
+            depositWay: true
+            offsetFlag: 1
+            orderPrice: 10000
+            orderQtt: 100
+            remark: BHP
+        method: POST
+        url: /api/trader/order
+    validate:
+        - eq: ["status_code", $expected_status_code]

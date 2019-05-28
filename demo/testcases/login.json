@@ -1,0 +1,85 @@
+[
+    {
+        "config": {
+            "name": "testcase description",
+
+            "base_url": "http://192.168.1.100:8093",
+
+
+
+        }
+    },
+    {
+        "test": {
+            "name": "/api/login",
+            "extract": [
+            {"cookie": "cookies.JSESSIONID"}
+            ],
+            "validate": [
+                {
+                    "eq": [
+                        "status_code",
+                        200
+                    ]
+                },
+                {
+                    "eq": [
+                        "headers.Content-Type",
+                        "application/json;charset=UTF-8"
+                    ]
+                },
+                {
+                    "eq": [
+                        "content.success",
+                        true
+                    ]
+                }
+            ],
+            "request": {
+
+                "json": {
+                    "username": "800001",
+                    "password": "800001",
+                    "vercode": "${add(5,3)}"
+                },
+                "url": "/api/login",
+                "method": "POST"
+            }
+
+        }
+    },
+    {
+        "test": {
+            "name": "/api/login",
+            "validate": [
+                {
+                    "eq": [
+                        "status_code",
+                        200
+                    ]
+                },
+                {
+                    "eq": [
+                        "headers.Content-Type",
+                        "application/json;charset=UTF-8"
+                    ]
+                },
+                {
+                    "eq": [
+                        "content.success",
+                        true
+                    ]
+                }
+            ],
+            "request": {
+                "json": {
+                    "username": "800001",
+                    "password": "800001",
+                    "vercode": "$cookie"
+                },
+                "url": "/api/login",
+                "method": "POST"
+            }
+        }
+    }
+]

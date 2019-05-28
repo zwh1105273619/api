@@ -1,0 +1,16 @@
+name: 登录接口模板
+variables:
+    expected_status_code: 200
+    password: '800001'
+    username: '800001'
+request:
+    url: "/api/login"
+    json:
+        password: '$password'
+        username: '$username'
+        vercode: ${gen_random_string(5)}
+    method: POST
+validate:
+    - eq: ["status_code", $expected_status_code]
+
+

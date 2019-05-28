@@ -1,0 +1,56 @@
+-   config:
+        name: testcase description
+        request:
+            base_url: "http://192.168.1.100:8093"
+-   test:
+        name: 测试登录
+        request:
+            headers:
+                Content-Type: application/json;charset=UTF-8
+                User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                    (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
+            json:
+                password: '800001'
+                username: '800001'
+                vercode: ${gen_random_string(5)}
+            method: POST
+            url: /api/login
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            - application/json;charset=UTF-8
+        -   eq:
+            - content.success
+            - true
+
+-   test:
+        name: /api/trader/order
+        request:
+            headers:
+                Content-Type: application/json;charset=UTF-8
+                User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                    (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
+            json:
+                buyDirection: true
+                contractId: zwh_HN1912
+                depositWay: true
+                offsetFlag: 1
+                orderPrice: 10000
+                orderQtt: 100
+                remark: BHP
+            method: POST
+            url: /api/trader/order
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            - application/json;charset=UTF-8
+        -   eq:
+            - content.success
+            - true
+

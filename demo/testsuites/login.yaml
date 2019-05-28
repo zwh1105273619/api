@@ -1,0 +1,11 @@
+config:
+    name: "demo"
+
+testcases:
+    testcase1_name:
+        testcase: E:\untitled2\demo\testcases\login.yaml
+        parameters:
+            username-password:
+                - ["800001", "800001"]
+                - ["800002", "800002"]
+                - ["800003", "800003"]

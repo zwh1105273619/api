@@ -1,0 +1,24 @@
+-   config:
+
+        base_url: "http://192.168.1.100:8093"
+-   test:
+        name: 测试登录
+        request:
+            url: "/api/login"
+            json:
+                password: '800001'
+                username: '800001'
+                vercode: ${gen_random_string(5)}
+            method: POST
+
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            - application/json;charset=UTF-8
+        -   eq:
+            - content.success
+            - true
+

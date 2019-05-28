@@ -1,0 +1,9 @@
+-   config:
+        base_url: "http://192.168.1.100:8093"
+-   test:
+        name: 测试登录
+        api: api/login.yaml
+        extract:
+            -cookie: cookies.JSESSIONID
+        validate:
+            - eq: ["content.success", True]

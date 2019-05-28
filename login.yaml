@@ -1,0 +1,26 @@
+-   config:
+        name: testcase description
+        variables: {}
+-   test:
+        name: /api/login
+        request:
+            headers:
+                Content-Type: application/json;charset=UTF-8
+                User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                    (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36
+            json:
+                password: '800001'
+                username: '800001'
+                vercode: '86084'
+            method: POST
+            url: http://192.168.1.100:8093/api/login
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            - application/json;charset=UTF-8
+        -   eq:
+            - content.success
+            - true
