@@ -1,6 +1,6 @@
 import os
 
-os.system(r'httprunner E:\untitled2\demo\testcases\login.yaml')
+os.system(r'httprunner .\demo\testcases\login.yaml')
 
 
 
